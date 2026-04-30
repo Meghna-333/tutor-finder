@@ -1,0 +1,93 @@
+type UserId = text;
+type UnlockStatus = 
+ record {
+   freeUnlocksUsed: nat;
+   hasFreeUnlock: bool;
+   isUnlocked: bool;
+ };
+type UnlockResult = 
+ variant {
+   alreadyUnlocked: record {
+                      email: text;
+                      phone: text;
+                    };
+   noFreeUnlockAvailable;
+   success: record {
+              email: text;
+              phone: text;
+              usedFreeUnlock: bool;
+            };
+ };
+type TutorId = nat;
+type TutorFilter = 
+ record {
+   location: opt text;
+   maxBudget: opt nat;
+   mode: opt LearningMode;
+   subjects: opt vec text;
+ };
+type Tutor = 
+ record {
+   distanceKm: float64;
+   email: text;
+   experienceYears: nat;
+   id: TutorId;
+   imageUrl: text;
+   isVerified: bool;
+   name: text;
+   phone: text;
+   pricePerHour: nat;
+   rating: float64;
+   reviewCount: nat;
+   subjects: vec text;
+ };
+type Timestamp = int;
+type SubmitReviewRequest = 
+ record {
+   comment: text;
+   rating: nat;
+   tutorId: TutorId;
+ };
+type ReviewId = nat;
+type Review = 
+ record {
+   comment: text;
+   createdAt: Timestamp;
+   id: ReviewId;
+   rating: nat;
+   reviewerId: UserId;
+   tutorId: TutorId;
+ };
+type LearningMode = 
+ variant {
+   goToTutor;
+   learnAtHome;
+ };
+type CreateBookingRequest = 
+ record {
+   date: text;
+   studentPhone: text;
+   timeSlot: text;
+   tutorId: TutorId;
+ };
+type BookingId = nat;
+type Booking = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   id: BookingId;
+   studentId: UserId;
+   studentPhone: text;
+   timeSlot: text;
+   tutorId: TutorId;
+ };
+service : {
+  checkUnlockStatus: (tutorId: TutorId) -> (UnlockStatus) query;
+  createBooking: (req: CreateBookingRequest) -> (Booking);
+  getBookings: (studentId: UserId) -> (vec Booking) query;
+  getReviews: (tutorId: TutorId) -> (vec Review) query;
+  getTutorById: (id: TutorId) -> (opt Tutor) query;
+  getTutors: (filter: opt TutorFilter) -> (vec Tutor) query;
+  submitReview: (req: SubmitReviewRequest) -> (Review);
+  unlockContact: (tutorId: TutorId) -> (UnlockResult);
+}

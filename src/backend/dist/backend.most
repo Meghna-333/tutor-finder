@@ -1,0 +1,105 @@
+// Version: 1.0.0
+type BookingId__892708521 = Nat;
+type Booking__628731632 =
+  {
+    createdAt : Timestamp__301639476;
+    date : Text;
+    id : BookingId__892708521;
+    studentId : UserId__158757552;
+    studentPhone : Text;
+    timeSlot : Text;
+    tutorId : TutorId__181708693
+  };
+type ContactUnlock__760177362 =
+  {
+    id : UnlockId__812545600;
+    tutorId : TutorId__181708693;
+    unlockedAt : Timestamp__301639476;
+    usedFreeUnlock : Bool;
+    userId : UserId__158757552
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ReviewId__1068003314 = Nat;
+type Review__1059295586 =
+  {
+    comment : Text;
+    createdAt : Timestamp__301639476;
+    id : ReviewId__1068003314;
+    rating : Nat;
+    reviewerId : UserId__158757552;
+    tutorId : TutorId__181708693
+  };
+type Timestamp__301639476 = Int;
+type TutorId__181708693 = Nat;
+type TutorId__518324147 = TutorId__181708693;
+type Tutor__846557292 =
+  {
+    distanceKm : Float;
+    email : Text;
+    experienceYears : Nat;
+    id : TutorId__518324147;
+    imageUrl : Text;
+    isVerified : Bool;
+    name : Text;
+    phone : Text;
+    pricePerHour : Nat;
+    rating : Float;
+    reviewCount : Nat;
+    subjects : [Text]
+  };
+type UnlockId__812545600 = Nat;
+type UserId__158757552 = Text;
+actor {
+  stable bookingIdCounter :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Nat]];
+      var elementIndex : Nat__490723111
+    };
+  stable bookings :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Booking__628731632]];
+      var elementIndex : Nat__490723111
+    };
+  stable freeUnlocksUsed :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable reviewIdCounter :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Nat]];
+      var elementIndex : Nat__490723111
+    };
+  stable reviews :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Review__1059295586]];
+      var elementIndex : Nat__490723111
+    };
+  stable tutors :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Tutor__846557292]];
+      var elementIndex : Nat__490723111
+    };
+  stable unlockIdCounter :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Nat]];
+      var elementIndex : Nat__490723111
+    };
+  stable unlocks :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ContactUnlock__760177362]];
+      var elementIndex : Nat__490723111
+    }
+};

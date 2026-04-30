@@ -1,0 +1,26 @@
+{
+  "overview": "Tutor Finder is a mobile-first marketplace app for students in India to find and connect with nearby offline tutors. Features two learning modes (Learn at Home / Go to Tutor), Tinder-style swipe discovery, contact unlock, booking, and review — all in a clean, trust-focused UI.",
+  "features": [
+    "Phone OTP login with Indian number format",
+    "Mode selection: Learn at Home vs Go to Tutor",
+    "Requirements form with class, subjects, budget slider, and location",
+    "Tutor listing with ratings, distance, price, and verification badges",
+    "Tinder-style swipe interface for tutor discovery",
+    "Contact unlock payment screen (₹99 per unlock)",
+    "Demo class booking with calendar and time slot picker",
+    "Star rating and review submission",
+    "Bottom tab navigation (Home, Explore, Bookings, Profile)",
+    "Trust signals: verified badges, star ratings, review counts"
+  ],
+  "category": "marketplace",
+  "tags": [
+    "tutor",
+    "edtech",
+    "india",
+    "marketplace",
+    "mobile",
+    "education",
+    "discovery"
+  ],
+  "last_updated": "2026-04-30T09:17:18.121Z"
+}

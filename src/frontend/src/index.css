@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.875rem;
+
+    --background: 0.99 0 0;
+    --foreground: 0.12 0 0;
+    --card: 1.0 0 0;
+    --card-foreground: 0.12 0 0;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.12 0 0;
+
+    --primary: 0.55 0.22 280;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.65 0.2 240;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.93 0.02 0;
+    --muted-foreground: 0.55 0.02 0;
+
+    --accent: 0.72 0.18 50;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.92 0.01 0;
+    --input: 0.96 0.01 0;
+    --ring: 0.55 0.22 280;
+
+    --chart-1: 0.65 0.15 140;
+    --chart-2: 0.55 0.22 280;
+    --chart-3: 0.65 0.2 240;
+    --chart-4: 0.72 0.18 50;
+    --chart-5: 0.5 0.2 20;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.12 0 0;
+    --sidebar-primary: 0.55 0.22 280;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.93 0.02 0;
+    --sidebar-accent-foreground: 0.55 0.02 0;
+    --sidebar-border: 0.92 0.01 0;
+    --sidebar-ring: 0.55 0.22 280;
+
+    --gradient-primary: linear-gradient(135deg, #6c63ff 0%, #4f9ef8 100%);
+    --gradient-subtle: linear-gradient(
+      135deg,
+      oklch(0.99 0 0),
+      oklch(0.96 0.01 0)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --radius-card: 14px;
+  }
+
+  .dark {
+    --background: 0.13 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.17 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.22 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.65 0.2 280;
+    --primary-foreground: 0.13 0 0;
+
+    --secondary: 0.75 0.18 240;
+    --secondary-foreground: 0.13 0 0;
+    --muted: 0.22 0.02 0;
+    --muted-foreground: 0.65 0.02 0;
+
+    --accent: 0.8 0.18 50;
+    --accent-foreground: 0.13 0 0;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.24 0.01 0;
+    --input: 0.24 0.01 0;
+    --ring: 0.65 0.2 280;
+
+    --chart-1: 0.6 0.15 140;
+    --chart-2: 0.65 0.2 280;
+    --chart-3: 0.75 0.18 240;
+    --chart-4: 0.8 0.18 50;
+    --chart-5: 0.55 0.18 20;
+
+    --sidebar: 0.17 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.65 0.2 280;
+    --sidebar-primary-foreground: 0.13 0 0;
+    --sidebar-accent: 0.22 0.02 0;
+    --sidebar-accent-foreground: 0.65 0.02 0;
+    --sidebar-border: 0.24 0.01 0;
+    --sidebar-ring: 0.65 0.2 280;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary to-secondary;
+  }
+
+  .gradient-subtle {
+    @apply bg-gradient-to-br from-background to-input;
+  }
+
+  .shadow-card {
+    @apply shadow-[0_4px_12px_rgba(0,0,0,0.08)];
+  }
+
+  .shadow-hover {
+    @apply shadow-[0_8px_20px_rgba(0,0,0,0.12)];
+  }
+
+  .card-interactive {
+    @apply bg-card rounded-lg p-4 transition-smooth hover:shadow-hover cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground rounded-[12px] px-6 py-3 font-display font-semibold transition-smooth hover:opacity-90 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground rounded-[12px] px-6 py-3 font-display font-semibold transition-smooth hover:opacity-90 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-border text-foreground rounded-[12px] px-6 py-3 font-display font-semibold transition-smooth hover:bg-muted/30;
+  }
+
+  .input-field {
+    @apply bg-input border-2 border-border rounded-[8px] px-4 py-3 font-body text-foreground placeholder-muted-foreground transition-smooth focus:border-primary focus:outline-none;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs font-semibold;
+  }
+
+  .rating-badge {
+    @apply inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold;
+  }
+
+  .chip {
+    @apply inline-flex items-center px-3 py-2 rounded-full bg-muted text-foreground text-sm font-body transition-smooth hover:bg-muted/80 cursor-pointer;
+  }
+
+  .chip-active {
+    @apply bg-primary text-primary-foreground;
+  }
+}
